@@ -1779,7 +1779,7 @@ def harmonic_ILC(wv=None, info=None, resp_tol=1.e-3, map_images=False):
     # TODO -- memory management could probably be improved here (reduce file I/O overhead, reduce number of smoothing operations, etc...)
     ILC_maps_per_scale = []
     ILC_alms_per_scale = []
-    ILC_alms = np.zeros(int(hp.sphtfunc.Alm.getsize(wv.ELLMAX)),dtype=np.complex_)
+    ILC_alms = np.zeros(int(hp.sphtfunc.Alm.getsize(wv.ELLMAX)),dtype=np.complex128)
     ILC_filters = []
     for a in range(info.N_freqs):
         ILC_filters.append(np.zeros(wv.ELLMAX+1))
@@ -1978,7 +1978,7 @@ def harmonic_ILC(wv=None, info=None, resp_tol=1.e-3, map_images=False):
         #ILC_alms_per_scale.append(ILC_alm_temp)
     ##########################
     # synthesize the per-needlet-scale ILC maps into the final combined ILC map (apply each needlet filter again and add them all together -- have to upgrade to all match the same Nside -- done in synthesize)
-    ILC_alm = np.zeros(int(hp.sphtfunc.Alm.getsize(wv.ELLMAX)),dtype=np.complex_)
+    ILC_alm = np.zeros(int(hp.sphtfunc.Alm.getsize(wv.ELLMAX)),dtype=np.complex128)
     for a in range(info.N_freqs):
         if not info.apply_weights_to_other_maps:
             wavelet_coeff_alm = info.alms[a]

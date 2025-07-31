@@ -220,6 +220,12 @@ def get_mix(nu_ghz, comp, param_dict_file=None, param_dict_override=None,
         # TODO: the line below may be wrong for radio maps!
         resp[np.where(nu_ghz == None)] = 0. #this case is appropriate for HI or other maps that contain no CMB-relevant signals (and also no CIB); they're assumed to be denoted by None in nu_ghz
         return resp
+    
+    elif (comp =='dp'):
+        # p = _setp()
+        nu = 1.e9*np.asarray(nu_ghz).astype(float)
+        resp = 1/(2 * np.pi * nu*6.58212e-16)
+        return resp
 
     elif (comp == 'radio_dbeta'):
         # radio = power-law here (power-law SED in specific intensity units (W/m^2/Hz/sr), here converted to uK_CMB)
